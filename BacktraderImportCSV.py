@@ -90,7 +90,7 @@ class MammonStrategy(bt.Strategy):
         data_factory = TechnicalAnalysis(open, high, low, close, volume)
         data = data_factory.execute()
         data = Utils.remove_nan(data)
-        data = Utils.normalize(data, self.max, self.min)
+        data = Utils.normalize_zero_one(data, self.max, self.min)
 
         target = self.neural_network.predict(np.array([data]))
         actual_target = target.argmax()

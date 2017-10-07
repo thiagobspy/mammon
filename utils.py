@@ -3,8 +3,12 @@ import numpy as np
 
 class Utils:
     @staticmethod
-    def normalize(data, max, min):
+    def normalize_zero_one(data, max, min):
         return (data - min) / (max - min)
+
+    @staticmethod
+    def normalize_minus_one_more_one(data, max):
+        return data / max
 
     @staticmethod
     def remove_nan(data):

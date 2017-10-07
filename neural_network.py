@@ -10,9 +10,7 @@ class NeuralNetwork:
         self.model.add(LSTM(hidden_layer,
                             input_shape=input_shape,
                             kernel_regularizer=regularizers.l2(0.01),
-                            return_sequences=True))
-        self.model.add(Dropout(0.3))
-        self.model.add(LSTM(hidden_layer, kernel_regularizer=regularizers.l2(0.01)))
+                            return_sequences=False))
         self.model.add(Dropout(0.3))
         self.model.add(Dense(hidden_layer, kernel_regularizer=regularizers.l2(0.01), activation='tanh'))
         self.model.add(Dropout(0.3))

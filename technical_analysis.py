@@ -13,74 +13,18 @@ class TechnicalAnalysis:
 
         self.setter_periods()
 
-    def setter_periods(self, ema_period=14,
-                       rsi_period=14,
-                       stoch_period=14,
-                       mom_period=14,
-                       adx_period=14,
-                       willr_period=14,
-                       cci_period=14,
-                       roc_period=10,
-                       stochrsi_period=14,
-                       trix_period=30,
-                       mfi_period=14,
-                       ultosc_1_period=7,
-                       ultosc_2_period=14,
-                       ultosc_3_period=21,
-                       aroon_period=14,
-                       aroonosc_period=14,
-                       atr_period=14,
-                       adoscfast_period=3,
-                       adoscslow_period=10):
-
-        self.ema_period = ema_period
-        self.rsi_period = rsi_period
-        self.stoch_period = stoch_period
-        self.mom_period = mom_period
-        self.adx_period = adx_period
-        self.willr_period = willr_period
-        self.cci_period = cci_period
-        self.roc_period = roc_period
-        self.stochrsi_period = stochrsi_period
-        self.trix_period = trix_period
-        self.mfi_period = mfi_period
-        self.ultosc_1_period = ultosc_1_period
-        self.ultosc_2_period = ultosc_2_period
-        self.ultosc_3_period = ultosc_3_period
-        self.aroon_period = aroon_period
-        self.aroonosc_period = aroonosc_period
-        self.atr_period = atr_period
-        self.adoscfast_period = adoscfast_period
-        self.adoscslow_period = adoscslow_period
+    def setter_periods(self, ema_f_period=6, ema_m_period=12, ema_s_period=24):
+        self.ema_f_period = ema_f_period
+        self.ema_m_period = ema_m_period
+        self.ema_s_period = ema_s_period
 
     def execute(self):
-        ema = talib.EMA(self.average_price, self.ema_period)
-        rsi = talib.RSI(self.average_price, self.rsi_period)
-        stoch_K, stoch_D = talib.STOCHF(self.high, self.low, self.close, fastk_period=self.stoch_period)
-        macd, macdsignal, macdhist = talib.MACD(self.average_price)
-        sar = talib.SAR(self.high, self.low)
-        mom = talib.MOM(self.average_price, self.mom_period)
-        adx = talib.ADX(self.high, self.low, self.close, self.adx_period)
-        willr = talib.WILLR(self.high, self.low, self.close, self.willr_period)
-        cci = talib.CCI(self.high, self.low, self.close, self.cci_period)
-        roc = talib.ROC(self.average_price, self.roc_period)
-        stochrsi_K, stochrsi_D = talib.STOCHRSI(self.average_price, self.stochrsi_period)
-        trix = talib.TRIX(self.average_price, self.trix_period)
-        mfi = talib.MFI(self.high, self.low, self.close, self.volume, self.mfi_period)
-        ultosc = talib.ULTOSC(self.high, self.low, self.close, self.ultosc_1_period, self.ultosc_2_period, self
-                              .ultosc_3_period)
-        aroon_down, aroon_up = talib.AROON(self.high, self.low, self.aroon_period)
-        aroonosc = talib.AROONOSC(self.high, self.low, self.aroonosc_period)
-        atr = talib.ATR(self.high, self.low, self.close, self.atr_period)
-        ad = talib.AD(self.high, self.low, self.close, self.volume)
-        obv = talib.OBV(self.average_price, self.volume)
-        adosc = talib.ADOSC(self.high, self.low, self.close, self.volume, self.adoscfast_period, self.adoscslow_period)
+        ema_f = talib.EMA(self.close, self.ema_f_period)
+        ema_m = talib.EMA(self.close, self.ema_m_period)
+        ema_s = talib.EMA(self.close, self.ema_s_period)
 
-        spread_ema = ema - self.average_price
-        spread_stoch = stoch_K - stoch_D
-        spread_stochrsi = stochrsi_K - stochrsi_D
-        spread_aroon = aroon_up - aroon_down
+        spread_ema_f = ema_f - self.close
+        spread_ema_m = ema_m - self.close
+        spread_ema_s = ema_s - self.close
 
-        return np.array([self.average_price, spread_ema, rsi, macd, macdhist, stoch_K, spread_stoch, sar, mom, adx,
-                         willr, cci, roc, spread_stochrsi, trix, mfi, ultosc, aroon_down, aroon_up,
-                         spread_aroon, aroonosc, atr, ad, obv, adosc]).transpose()
+        return np.array([self.close, spread_ema_f, spread_ema_m, spread_ema_s]).transpose()

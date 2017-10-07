@@ -1,5 +1,4 @@
 limit_bar = 30
 alta, neutro, baixa = [119173 115429 115793]
-entrada = (350247, 60, 25)
+entrada = (350247, 90, 4) - Somente media moveis
 acc = 0.33
- 
