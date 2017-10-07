@@ -1,0 +1,5 @@
+limit_bar = 30
+alta, neutro, baixa = [119173 115429 115793]
+entrada = (350247, 60, 25)
+acc = 0.33
+ 
