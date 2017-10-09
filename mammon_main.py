@@ -9,7 +9,6 @@ parse_data = ParseData('eur_usd_m5.csv')
 open, high, low, close, volume = parse_data.parse()
 
 technical_analysis = TechnicalAnalysis(open, high, low, close, volume)
-technical_analysis.setter_periods(14, 60, 90)
 input_data = technical_analysis.execute()
 number_features = input_data.shape[1]
 
