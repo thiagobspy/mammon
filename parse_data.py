@@ -1,4 +1,5 @@
 import numpy as np
+import pandas as pd
 
 
 class ParseData:
@@ -14,3 +15,7 @@ class ParseData:
     def get_file(self):
         data = np.genfromtxt(self.file, delimiter=self.delimiter)
         return data
+
+    def get_data_per_week(self):
+        df = pd.read_csv(self.file, parse_dates=['date'])
+        df['date'] = pd.to_datetime(df['date'])
