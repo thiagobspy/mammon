@@ -33,3 +33,7 @@ class Utils:
             features.append(input_data[count: count + times_series])
             features_target.append(target_data[count])
         return np.array(features), np.array(features_target)
+
+    @staticmethod
+    def split_arrays(array, n):
+        return [array[:, x] for x in range(n)]
