@@ -4,7 +4,7 @@ import csv
 from oandapyV20 import API
 from oandapyV20.contrib.factories import InstrumentsCandlesFactory
 
-token = 'f3c6c368f9be6df9a3727506168fb0cf-1afeb072f2da3a861a33af7e41b0d6e0'
+token = '435fc89e4fec6d2c1fa46de985e6ab6f-2b4e3458cb268aac64666f37d10ac0ee'
 
 client = API(access_token=token)
 
@@ -12,7 +12,7 @@ RFC3339_format_accept = "%Y-%m-%dT%H:%M:%SZ"
 
 _from = datetime(2013, 1, 1, 0, 0, 0)
 _to = datetime.today()
-granularity = 'M5'
+granularity = 'M15'
 instrument = 'EUR_USD'
 count_max_per_request = 5000
 
@@ -24,7 +24,7 @@ params = {
 
 incomplete = list()
 
-with open('eur_usd_m5.csv', mode='w', newline='') as csvfile:
+with open('eur_usd_m15.csv', mode='w', newline='') as csvfile:
     writer = csv.writer(csvfile, delimiter=',', quoting=csv.QUOTE_MINIMAL)
     writer.writerow(['datetime', 'open', 'high', 'low', 'close', 'volume'])
 

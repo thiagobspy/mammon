@@ -24,14 +24,14 @@ class Utils:
 
     @staticmethod
     def split_recurrent_data_per_times_series(input_data, target_data, times_series):
-        input_data = np.flip(input_data, axis=0)
-        target_data = np.flip(target_data, axis=0)
+        # input_data = np.flip(input_data, axis=0)
+        # target_data = np.flip(target_data, axis=0)
 
         features = []
         features_target = []
-        for count in range(len(input_data) - times_series):
+        for count in range(0, len(input_data) - times_series):
             features.append(input_data[count: count + times_series])
-            features_target.append(target_data[count])
+            features_target.append(target_data[count + times_series])
         return np.array(features), np.array(features_target)
 
     @staticmethod

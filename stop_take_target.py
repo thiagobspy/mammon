@@ -9,17 +9,17 @@ class StopTakeTarget:
 
         self.setter_params()
 
-    def setter_params(self, spread_up=0.001, spread_down=0.001, limit_bar=30):
+    def setter_params(self, spread_up=0.001, spread_down=0.001, limit_bar=10):
         self.spread_up = spread_up
         self.spread_down = spread_down
         self.limit_bar = limit_bar
 
     def execute(self):
-        targets = []
-        for count in range(len(self.open)):
-            up_target = self.open[count] * (1 + self.spread_up)
-            down_target = self.open[count] * (1 - self.spread_down)
-            actual_bar = count
+        targets = [[0, 0, 0]]
+        for count in range(len(self.open) - 1):
+            up_target = self.open[count + 1] * (1 + self.spread_up)
+            down_target = self.open[count + 1] * (1 - self.spread_down)
+            actual_bar = count + 1
 
             target = np.array([0, 1, 0])
 
@@ -38,4 +38,3 @@ class StopTakeTarget:
 
             targets.append(target)
         return np.array(targets)
-

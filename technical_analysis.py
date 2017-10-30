@@ -80,6 +80,29 @@ class TechnicalAnalysis:
         spread_stochrsi = stochrsi_K - stochrsi_D
         spread_aroon = aroon_up - aroon_down
 
-        return np.array([self.close, spread_ema, rsi, macd, macdhist, stoch_K, spread_stoch, sar, mom, adx,
-                         willr, cci, roc, spread_stochrsi, trix, mfi, ultosc, aroon_down, aroon_up,
-                         spread_aroon, aroonosc, atr, ad, obv, adosc]).transpose()
+        return np.array([self.close,
+                         spread_ema,
+                         rsi,
+                         macd,
+                         macdhist,
+                         stoch_K,
+                         spread_stoch,
+                         sar,
+                         mom,
+                         adx,
+                         willr,
+                         cci,
+                         roc,
+                         spread_stochrsi,
+                         trix,
+                         mfi,
+                         ultosc,
+                         aroon_down,
+                         aroon_up,
+                         spread_aroon,
+                         aroonosc,
+                         atr,
+                         ad,
+                         obv,
+                         adosc
+                         ]).transpose()
